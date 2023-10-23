@@ -1,16 +1,7 @@
-/**********************************************************************************
-// WallHit (Arquivo de Cabeçalho)
-// 
-// Criação:     03 Ago 2019
-// Atualização: 01 Nov 2021
-// Compilador:  Visual C++ 2022
-//
-// Descrição:   Efeito de explosão de faíscas usando sistema de partículas
-//
-**********************************************************************************/
 
-#ifndef _GEOWARS_WALLHIT_H_
-#define _GEOWARS_WALLHIT_H_
+
+#ifndef _SPACE_WALLHIT_H_
+#define _SPACE_WALLHIT_H_
 
 // ---------------------------------------------------------------------------------
 

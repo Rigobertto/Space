@@ -1,45 +1,42 @@
 
 #include "Engine.h"
-#include "About.h"
+#include "GameOver.h"
 #include "Space.h"
 #include "Home.h"
-#include "Background.h"
+#include "Fundo.h"
 #include "Scene.h"
 #include "Animation.h"
-#include <iostream>
-#include <string>
+#include "Start.h"
 
 // ----------------------------------------------------------------------
-Scene* About::scene = nullptr;
+Scene* GameOver::scene = nullptr;
 
-void About::Init()
+void GameOver::Init()
 {
     scene = new Scene();
+    gameover = new Sprite("Resources/botoes/gameover.png");
 
-    string src = "Resources/background/about.png";
+    string src = "Resources/background/theend.png";
     background = new Fundo(0, Color{ 1,1,1,1 }, src);
     scene->Add(background, STATIC);
+
 
     // cria objeto mouse
     mouse = new Mouse();
     scene->Add(mouse, MOVING);
 
     // cria itens de menu - float posX, float posY, float largura, float altura, int colunas, int quantidade, uint menuId, string imgFile
-
-    menu[0] = new Item(100, 50, 180, 90, 1, 2, VOLTAR, "Resources/botoes/back.png");
-
-    menu[1] = new Item(window->CenterX(), 450, 102, 25, 1, 2, HOMER, "");
+    menu[0] = new Item(window->CenterX(), 450, 260, 130, 1, 2, PLAYAGAIN, "Resources/botoes/playagain.png");
+    menu[1] = new Item(window->CenterX(), 580, 260, 130, 1, 2, HOME, "Resources/botoes/home.png");
 
     // adiciona itens na cena
     for (int i = 0; i < MaxItens; ++i)
         scene->Add(menu[i], STATIC);
-
-
 }
 
 // ----------------------------------------------------------------------
 
-void About::Update()
+void GameOver::Update()
 {
 
     scene->Update();
@@ -62,14 +59,16 @@ void About::Update()
             {
                 switch (menu[i]->Type())
                 {
-                case VOLTAR:
-
-                    Space::NextLevel<Home>();
+                case PLAYAGAIN:
+                    Space::audio->Stop(THEME);
+                    //Start::player->Reset();
+                    Space::NextLevel<Start>();
 
                     break;
-                case HOMER:
-
-                    //Space::audio->Stop(MENU);
+                case HOME:
+                    
+                    Space::audio->Stop(AUDIOMENU);
+                   // Start::player->Reset();
                     Space::NextLevel<Home>();
                     break;
                 }
@@ -87,12 +86,9 @@ void About::Update()
 
 // ----------------------------------------------------------------------
 
-void About::Draw()
+void GameOver::Draw()
 {
-    Color vermelho(0.97f, 0.47f, 0.36f, 1.0f);
-    Color creme(0.94f, 0.91f, 0.76f, 1.0f);
-
-
+    gameover->Draw(window->CenterX(), window->CenterY(), Layer::FRONT);
     scene->Draw();
 
     if (Space::viewBBox)
@@ -101,10 +97,11 @@ void About::Draw()
 
 // ----------------------------------------------------------------------
 
-void About::Finalize()
+void GameOver::Finalize()
 {
     delete background;
     delete mouse;
+    delete gameover;
 }
 
 // ----------------------------------------------------------------------

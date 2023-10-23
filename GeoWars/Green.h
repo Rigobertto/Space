@@ -1,16 +1,7 @@
-/**********************************************************************************
-// Green (Arquivo de Cabeçalho)
-// 
-// Criação:     15 Out 2012
-// Atualização: 01 Nov 2021
-// Compilador:  Visual C++ 2022
-//
-// Descrição:   Objeto faz uma fuga suavizada
-//
-**********************************************************************************/
 
-#ifndef _GEOWARS_GREEN_H_
-#define _GEOWARS_GREEN_H_
+
+#ifndef _SPACE_GREEN_H_
+#define _SPACE_GREEN_H_
 
 // ---------------------------------------------------------------------------------
 

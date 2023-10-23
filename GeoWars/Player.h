@@ -1,16 +1,7 @@
-/**********************************************************************************
-// Player (Arquivo de Cabeçalho)
-// 
-// Criação:     10 Out 2012
-// Atualização: 01 Nov 2021
-// Compilador:  Visual C++ 2022
-//
-// Descrição:   Define a classe jogador
-//
-**********************************************************************************/
 
-#ifndef _GEOWARS_PLAYER_H_
-#define _GEOWARS_PLAYER_H_
+
+#ifndef _SPACE_PLAYER_H_
+#define _SPACE_PLAYER_H_
 
 // ---------------------------------------------------------------------------------
 

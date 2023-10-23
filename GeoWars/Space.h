@@ -1,13 +1,4 @@
-/**********************************************************************************
-// GeoWars (Arquivo de Cabeçalho)
-// 
-// Criação:     23 Out 2012
-// Atualização: 01 Nov 2021
-// Compilador:  Visual C++ 2022
-//
-// Descrição:   Demonstração da versão final do motor
-//
-**********************************************************************************/
+
 
 #ifndef _SPACE_H_
 #define _SPACE_H_

@@ -17,7 +17,7 @@ void Home::Init()
     scene = new Scene();
 
     string src = "Resources/background/start-screen.png";
-    background = new Fundo(0, Color{ 1,1,1,1 }, src);
+    background = new Fundo(50, Color{ 1,1,1,1 }, src);
     scene->Add(background, STATIC);
 
 

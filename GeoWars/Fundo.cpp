@@ -8,8 +8,6 @@ Fundo::Fundo(float speed, Color tint, string src) : color(tint)
     MoveTo(window->CenterX(), window->CenterY(), Layer::BACK);
     xB = x;
     this->speed = speed;
-    // carrega imagens
-    //imgF = new Image("Resources/floor/floor-level1.png"); // 480x584
     imgB = new Image(src);
 
 

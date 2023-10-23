@@ -1,16 +1,7 @@
-/**********************************************************************************
-// Missile (Arquivo de Cabeçalho)
-// 
-// Criação:     23 Nov 2011
-// Atualização: 01 Nov 2021
-// Compilador:  Visual C++ 2022
-//
-// Descrição:   Define uma classe para um míssil
-//
-**********************************************************************************/
 
-#ifndef _GEOWARS_MISSILE_H_
-#define _GEOWARS_MISSILE_H_
+
+#ifndef _SPACE_MISSILE_H_
+#define _SPACE_MISSILE_H_
 
 // --------------------------------------------------------------------------------
 

@@ -1,16 +1,7 @@
-/**********************************************************************************
-// Blue (Arquivo de Cabeçalho)
-// 
-// Criação:     10 Out 2012
-// Atualização: 01 Nov 2021
-// Compilador:  Visual C++ 2022
-//
-// Descrição:   Objeto faz uma perseguição suavizada
-//
-**********************************************************************************/
 
-#ifndef _GEOWARS_BLUE_H_
-#define _GEOWARS_BLUE_H_
+
+#ifndef _SPACE_BLUE_H_
+#define _SPACE_BLUE_H_
 
 // ---------------------------------------------------------------------------------
 

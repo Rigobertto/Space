@@ -1,16 +1,6 @@
-/**********************************************************************************
-// Delay (Arquivo de Cabeçalho)
-//
-// Criação:     02 Ago 2019
-// Atualização: 01 Nov 2021
-// Compilador:  Visual C++ 2022
-//
-// Descrição:   Sincroniza uma ação
-//
-**********************************************************************************/
 
-#ifndef _GEOWARS_DELAY_H_
-#define _GEOWARS_DELAY_H_
+#ifndef _SPACE_DELAY_H_
+#define _SPACE_DELAY_H_
 
 // --------------------------------------------------------------------------------
 

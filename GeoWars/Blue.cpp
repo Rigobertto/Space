@@ -1,13 +1,4 @@
-/**********************************************************************************
-// Blue (Código Fonte)
-// 
-// Criação:     10 Out 2012
-// Atualização: 01 Nov 2021
-// Compilador:  Visual C++ 2022
-//
-// Descrição:   Objeto faz uma perseguição suavizada
-//
-**********************************************************************************/
+
 
 #include "Space.h"
 #include "Blue.h"

@@ -1,5 +1,3 @@
-
-
 #ifndef _SPACE_HOME_H_
 #define _SPACE_HOME_H_
 

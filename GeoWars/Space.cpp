@@ -10,6 +10,7 @@
 #include "Start.h"
 #include "Home.h"
 #include "About.h"
+#include "GameOver.h"
 
 // ------------------------------------------------------------------------------
 
@@ -39,7 +40,7 @@ void Space::Init()
     Start::player  = new Player();
 
 
-    level = new Home();
+    level = new GameOver();
    // level->Size(1920, 1200);
     level->Init();
 }
@@ -54,13 +55,14 @@ void Space::Update()
 
     if (gameover)
     {
-        Space::NextLevel<Start>();
+        Space::NextLevel<GameOver>();
         gameover = false;
     }
 
     // habilita/desabilita visualização da bounding box
     if (window->KeyPress('B'))
         viewBBox = !viewBBox;
+
     // atualiza cena e calcula colisões
     level->Update();
     
