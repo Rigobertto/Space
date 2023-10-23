@@ -12,6 +12,7 @@
 #include "Space.h"
 #include "Magenta.h"
 #include "Random.h" 
+#include "Start.h"
 
 // ---------------------------------------------------------------------------------
 
@@ -42,7 +43,7 @@ Magenta::~Magenta()
 void Magenta::OnCollision(Object * obj)
 {
     if (obj->Type() == MISSILE)
-        Space::scene->Delete(this, MOVING);
+        Start::scene->Delete(this, MOVING);
 }
 
 // -------------------------------------------------------------------------------

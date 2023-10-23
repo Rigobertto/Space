@@ -12,10 +12,11 @@
 #include "Missile.h"
 #include "WallHit.h"
 #include "Space.h"
+#include "Start.h"
 
 // ------------------------------------------------------------------------------
 
-Player* & Missile::player = Space::player;        // referência para o player
+Player* & Missile::player = Start::player;        // referência para o player
 
 // ------------------------------------------------------------------------------
 
@@ -63,10 +64,10 @@ void Missile::Update()
         Space::audio->Play(HITWALL);
 
         // adiciona explosão na cena
-        Space::scene->Add(new WallHit(x,y), STATIC);
+        Start::scene->Add(new WallHit(x,y), STATIC);
 
         // remove míssil da cena
-        Space::scene->Delete();
+        Start::scene->Delete();
     }
 }
 

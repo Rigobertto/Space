@@ -10,6 +10,7 @@
 **********************************************************************************/
 
 #include "Space.h"
+#include "Start.h"
 #include "WallHit.h"
 #include "Random.h"
 
@@ -82,7 +83,7 @@ void WallHit::Update()
 
     // remove da cena quando todas as partículas estão inativas
     if (sparks->Inactive())
-        Space::scene->Delete();
+        Start::scene->Delete();
 }
 
 // -------------------------------------------------------------------------------

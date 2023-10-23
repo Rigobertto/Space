@@ -12,6 +12,7 @@
 #include "Space.h"
 #include "Blue.h"
 #include "Random.h" 
+#include "Start.h"
 
 // ---------------------------------------------------------------------------------
 
@@ -43,7 +44,7 @@ Blue::~Blue()
 void Blue::OnCollision(Object * obj)
 {
       if (obj->Type() == MISSILE)
-          Space::scene->Delete(this, MOVING);
+          Start::scene->Delete(this, MOVING);
 }
 
 // -------------------------------------------------------------------------------

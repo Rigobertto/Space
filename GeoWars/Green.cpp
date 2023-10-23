@@ -12,6 +12,7 @@
 #include "Green.h"
 #include "Space.h"
 #include "Random.h" 
+#include "Start.h"
 
 // ---------------------------------------------------------------------------------
 
@@ -46,7 +47,7 @@ Green::~Green()
 void Green::OnCollision(Object * obj)
 {
     if (obj->Type() == MISSILE)
-        Space::scene->Delete(this, MOVING);
+        Start::scene->Delete(this, MOVING);
 }
 
 // -------------------------------------------------------------------------------

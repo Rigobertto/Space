@@ -11,6 +11,7 @@
 
 #include "Space.h"
 #include "Orange.h"
+#include "Start.h"
 #include "Random.h" 
 
 // ---------------------------------------------------------------------------------
@@ -65,7 +66,7 @@ Orange::~Orange()
 void Orange::OnCollision(Object * obj)
 {
     if (obj->Type() == MISSILE)
-        Space::scene->Delete(this, MOVING);
+        Start::scene->Delete(this, MOVING);
 }
 
 // -------------------------------------------------------------------------------

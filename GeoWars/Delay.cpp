@@ -12,6 +12,7 @@
 #include "Delay.h"
 #include "Space.h"
 #include "Hud.h"
+#include "Start.h"
 
 // ------------------------------------------------------------------------------
 
@@ -44,8 +45,8 @@ void Delay::Update()
     {
         // toca música do jogo
         Space::audio->Play(THEME, true);
-        Space::viewHUD = true;
-        Space::scene->Delete();
+        Start::viewHUD = true;
+        Start::scene->Delete();
     }
 }
 

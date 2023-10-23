@@ -12,14 +12,15 @@
 #include "Player.h" 
 #include "Missile.h"
 #include "Space.h"
+#include "Start.h"
 
 // -------------------------------------------------------------------------------
 
 Player::Player()
 {
     // configuração do objeto
-    sprite = new Sprite("Resources/Player.png");
-    speed  = new Vector(90.0f, 0.0f);
+    sprite = new Sprite("Resources/player/nave_36x42.png");
+    speed  = new Vector(500.0f, 0.0f);
     BBox(new Circle(18.0f));
     MoveTo(game->CenterX(), game->CenterY());
     type = PLAYER;
@@ -103,7 +104,7 @@ void Player::Update()
     if (window->KeyPress(VK_SPACE))
     {
         Space::audio->Play(FIRE);
-        Space::scene->Add(new Missile(), STATIC);
+        Start::scene->Add(new Missile(), STATIC);
     }
 
     // atualiza calda do jogador

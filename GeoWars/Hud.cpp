@@ -10,6 +10,7 @@
 **********************************************************************************/
 
 #include "Hud.h"
+#include "Start.h"
 #include "Space.h"
 
 // ------------------------------------------------------------------------------
@@ -73,7 +74,7 @@ void Hud::Draw()
     font->Draw(40, 132, text.str(), textColor);
 
     text.str("");
-    text << "Mísseis: " << Space::scene->Size() - 5;
+    text << "Mísseis: " << Start::scene->Size() - 5;
     font->Draw(40, 152, text.str(), textColor);
 
     text.str("");

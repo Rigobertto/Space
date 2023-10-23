@@ -27,27 +27,37 @@ enum ObjectIds { PLAYER, MISSILE, BLUE, GREEN, MAGENTA, ORANGE, WALLHIT };
 
 // ------------------------------------------------------------------------------
 
-enum SoundIds { THEME, START, FIRE, EXPLODE, HITWALL };
+enum SoundIds { THEME, START, FIRE, EXPLODE, HITWALL, AUDIOMENU };
 
 // ------------------------------------------------------------------------------
 
 class Space : public Game
 {
 private:
-    Background * backg = nullptr;   // pano de fundo
-    Hud * hud = nullptr;            // painel de informações
-    bool viewBBox = false;          // visualização das bouding boxes
+    //static Game* level;            // nível atual do jogo
 
 public:
-    static Player * player;         // nave controlada pela jogador
+    static Game* level;            // nível atual do jogo
     static Audio * audio;           // sitema de áudio
-    static Scene * scene;           // cena do jogo
-    static bool viewHUD;            // visualização do painel
+    static bool viewBBox;
 
+    static bool gameover;
     void Init();                    // inicialização
     void Update();                  // atualização
     void Draw();                    // desenho
     void Finalize();                // finalização
+
+    template<class T>
+    static void NextLevel()         // muda para próximo nível do jogo
+    {
+        if (level)
+        {
+            level->Finalize();
+            delete level;
+            level = new T();
+            level->Init();
+        }
+    };
 };
 
 // ---------------------------------------------------------------------------------
