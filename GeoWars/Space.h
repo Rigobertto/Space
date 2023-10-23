@@ -14,11 +14,14 @@
 
 // ------------------------------------------------------------------------------
 
-enum ObjectIds { PLAYER, MISSILE, BLUE, GREEN, MAGENTA, ORANGE, WALLHIT };
+enum Ids
+{
+    PLAYER, MISSILE, WALLHIT, BLUE, GREEN, MAGENTA, ORANGE,
+    THEME, START, FIRE, EXPLODE, HITWALL, EXPLOSION, AUDIOMENU
+};
 
 // ------------------------------------------------------------------------------
 
-enum SoundIds { THEME, START, FIRE, EXPLODE, HITWALL, AUDIOMENU };
 
 // ------------------------------------------------------------------------------
 

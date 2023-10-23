@@ -1,4 +1,13 @@
-
+/**********************************************************************************
+// Green (Arquivo de Cabeçalho)
+//
+// Criação:     15 Out 2012
+// Atualização: 11 Nov 2021
+// Compilador:  Visual C++ 2022
+//
+// Descrição:   Objeto faz uma fuga suavizada
+//revisado
+**********************************************************************************/
 
 #ifndef _SPACE_GREEN_H_
 #define _SPACE_GREEN_H_
@@ -16,24 +25,26 @@
 class Green : public Object
 {
 private:
-    Sprite * sprite;                    // sprite do objeto
-    Vector * speed;                     // velocidade e direção
-    Player * player;                    // ponteiro para jogador
-    int distance;                       // mantém distância do jogador
-    
+    Sprite* sprite;                            // sprite do objeto
+    Player* player;                            // ponteiro para jogador
+    Vector speed;                               // velocidade e direção
+    int distance;                               // distância do jogador
+
 public:
-    Green(Player * p);                  // construtor
-    ~Green();                           // destrutor
-    
-    void OnCollision(Object* obj);      // resolução da colisão
-    void Update();                      // atualização
-    void Draw();                        // desenho
-}; 
+    Green(float pX, float pY, Player* p);      // construtor
+    ~Green();                                   // destrutor
+
+    void OnCollision(Object* obj);              // resolução da colisão
+    void Update();                              // atualização
+    void Draw();                                // desenho
+};
 
 // ---------------------------------------------------------------------------------
 
 inline void Green::Draw()
-{ sprite->Draw(x, y, Layer::LOWER, scale, rotation); }
+{
+    sprite->Draw(x, y, Layer::LOWER, scale, rotation);
+}
 
 // ---------------------------------------------------------------------------------
 

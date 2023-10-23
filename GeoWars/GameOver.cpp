@@ -60,7 +60,7 @@ void GameOver::Update()
                 switch (menu[i]->Type())
                 {
                 case PLAYAGAIN:
-                    Space::audio->Stop(THEME);
+                    //Space::audio->Stop(THEME);
                     //Start::player->Reset();
                     Space::NextLevel<Start>();
 

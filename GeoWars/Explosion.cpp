@@ -1,7 +1,7 @@
 /**********************************************************************************
-// WallHit (Código Fonte)
+// Explosion (Código Fonte)
 //
-// Criação:     03 Ago 2019
+// Criação:     17 Mar 2013
 // Atualização: 11 Nov 2021
 // Compilador:  Visual C++ 2022
 //
@@ -9,50 +9,27 @@
 //
 **********************************************************************************/
 
-#include "Space.h"
 #include "Start.h"
-#include "WallHit.h"
+#include "Space.h"
+#include "Explosion.h"
 #include "Random.h"
 #include "Hud.h"
 
 // ---------------------------------------------------------------------------------
 
-WallHit::WallHit(float pX, float pY)
+Explosion::Explosion(float pX, float pY)
 {
-    // calcula ângulo base e ajusta coordenadas da explosão
-    float base;
-    if (pX < 50)
-    {
-        base = 0.0f;
-        pX = 50;
-    }
-    else if (pX > game->Width() - 50)
-    {
-        base = 180.0f;
-        pX = game->Width() - 50;
-    }
-    else if (pY < 50)
-    {
-        base = 270.0f;
-        pY = 50;
-    }
-    else
-    {
-        base = 90.0f;
-        pY = game->Height() - 50;
-    }
-
     // número aleatório entre 0 e 1
     RandF color{ 0, 1 };
 
     // configura emissor de partículas
     Generator explosion;
-    explosion.imgFile = "Resources/Spark.png";    // arquivo de imagem
-    explosion.angle = base;                     // direção da explosão
-    explosion.spread = 160.0f;                   // espalhamento em graus
-    explosion.lifetime = 1.0f;                     // tempo de vida em segundos
+    explosion.imgFile = "Resources/Explo.png";    // arquivo de imagem
+    explosion.angle = 0.0f;                     // direção da explosão
+    explosion.spread = 360.0f;                   // espalhamento em graus
+    explosion.lifetime = 1.5f;                     // tempo de vida em segundos
     explosion.frequency = 0.000f;                   // tempo entre geração de novas partículas
-    explosion.percentToDim = 0.6f;                  // desaparece após 60% da vida
+    explosion.percentToDim = 0.8f;                  // desaparece após 60% da vida
     explosion.minSpeed = 25.0f;                    // velocidade mínima das partículas
     explosion.maxSpeed = 250.0f;                   // velocidade máxima das partículas
     explosion.color.r = color.Rand();             // cor da partícula entre 0 e 1
@@ -63,27 +40,27 @@ WallHit::WallHit(float pX, float pY)
     // cria sistema de partículas
     sparks = new Particles(explosion);
 
-    // gera 25 partículas na posição de contato
-    sparks->Generate(pX, pY, 25);
-    type = WALLHIT;
+    // gera 50 partículas na posição indicada
+    sparks->Generate(pX, pY, 50);
+    type = EXPLOSION;
 
     // incrementa contagem de partículas
-    Hud::particles += 25;
+    Hud::particles += 50;
 }
 
 // ---------------------------------------------------------------------------------
 
-WallHit::~WallHit()
+Explosion::~Explosion()
 {
     delete sparks;
 
     // decrementa contagem de partículas
-    Hud::particles -= 25;
+    Hud::particles -= 50;
 }
 
 // -------------------------------------------------------------------------------
 
-void WallHit::Update()
+void Explosion::Update()
 {
     // atualiza posição de cada partícula
     sparks->Update(gameTime);

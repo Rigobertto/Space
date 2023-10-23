@@ -2,7 +2,7 @@
 // Hud (Código Fonte)
 //
 // Criação:     02 Ago 2019
-// Atualização: 01 Nov 2021
+// Atualização: 11 Nov 2021
 // Compilador:  Visual C++ 2022
 //
 // Descrição:   Heads Up Display
@@ -12,6 +12,16 @@
 #include "Hud.h"
 #include "Start.h"
 #include "Space.h"
+
+// ------------------------------------------------------------------------------
+
+// inicializa contadores
+uint Hud::missiles = 0;
+uint Hud::oranges = 0;
+uint Hud::magentas = 0;
+uint Hud::blues = 0;
+uint Hud::greens = 0;
+uint Hud::particles = 0;
 
 // ------------------------------------------------------------------------------
 
@@ -25,7 +35,11 @@ Hud::Hud()
 
     // carrega sprites
     infoBox = new Sprite("Resources/InfoBox.png");
-    keyMap = new Sprite("Resources/Keymap.png");
+
+    // inicializa contador de frames e tempo transcorrido
+    frameCount = 0;
+    totalTime = 0.0f;
+    fps = 0;
 }
 
 // ------------------------------------------------------------------------------
@@ -35,14 +49,25 @@ Hud::~Hud()
     delete font;
     delete bold;
     delete infoBox;
-    delete keyMap;
 }
 
 // -------------------------------------------------------------------------------
 
 void Hud::Update()
 {
+    // tempo acumulado dos frames
+    totalTime += gameTime;
 
+    // incrementa contador de frames
+    frameCount++;
+
+    // a cada 1000ms (1 segundo) atualiza indicador de FPS
+    if (totalTime >= 1.0f)
+    {
+        fps = frameCount;
+        frameCount = 0;
+        totalTime -= 1.0f;
+    }
 }
 
 // -------------------------------------------------------------------------------
@@ -51,7 +76,6 @@ void Hud::Draw()
 {
     // desenha elementos da interface
     infoBox->Draw(game->viewport.left + 140, game->viewport.top + 100, Layer::FRONT);
-    keyMap->Draw(game->viewport.left + window->CenterX(), game->viewport.top + window->Height() - 16.0f, Layer::FRONT);
 
     // define cor do texto
     Color textColor{ 0.7f, 0.7f, 0.7f, 1.0f };
@@ -62,28 +86,20 @@ void Hud::Draw()
     bold->Draw(40, 62, text.str(), textColor);
 
     text.str("");
-    text << "Janela: " << window->Width() << " x " << window->Height();
+    text << "FPS: " << fps;
     font->Draw(40, 92, text.str(), textColor);
 
     text.str("");
-    text << "Mundo: " << game->Width() << " x " << game->Height();
+    text << "Partículas: " << particles;
     font->Draw(40, 112, text.str(), textColor);
 
     text.str("");
-    text << "Viewport: (" << uint(game->viewport.left) << "," << uint(game->viewport.top) << ") a (" << uint(game->viewport.right) << "," << uint(game->viewport.bottom) << ")";
+    text << "Inimigos: " << oranges + magentas + blues + greens;
     font->Draw(40, 132, text.str(), textColor);
 
     text.str("");
-    text << "Mísseis: " << Start::scene->Size() - 5;
+    text << "Mísseis: " << missiles;
     font->Draw(40, 152, text.str(), textColor);
-
-    text.str("");
-    text << "Movimento";
-    bold->Draw(window->CenterX() - 84.0f, window->Height() - 7.0f, text.str(), textColor);
-
-    text.str("");
-    text << "Disparo";
-    bold->Draw(window->CenterX() + 115.0f, window->Height() - 7.0f, text.str(), textColor);
 }
 
 // -------------------------------------------------------------------------------

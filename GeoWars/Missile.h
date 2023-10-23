@@ -1,4 +1,13 @@
-
+/**********************************************************************************
+// Missile (Arquivo de Cabeçalho)
+//
+// Criação:     23 Nov 2011
+// Atualização: 11 Nov 2021
+// Compilador:  Visual C++ 2022
+//
+// Descrição:   Define uma classe para um míssil
+//
+**********************************************************************************/
 
 #ifndef _SPACE_MISSILE_H_
 #define _SPACE_MISSILE_H_
@@ -15,29 +24,30 @@
 class Missile : public Object
 {
 private:
-    const float MaxDistance = 4406; // distância máxima para o jogador
-    const float BaseVolume = 0.8f;  // volume base para explosão
+    static Player*& player;            // referência para o player
+    Sprite* sprite;                    // sprite do míssil
+    Vector speed;                       // velocidade do míssil    
 
-    static Player* & player;        // referência para o player
-    Sprite * sprite;                // sprite do míssil
-    Vector speed;                   // velocidade do míssil    
-    
 public:
-    Missile();                      // construtor
-    ~Missile();                     // destrutor
+    Missile(float angle);               // construtor
+    ~Missile();                         // destrutor
 
-    Vector& Speed();                // retona vetor velocidade
-    void Update();                  // atualização
-    void Draw();                    // desenho
-}; 
+    Vector& Speed();                    // retona vetor velocidade
+    void Update();                      // atualização
+    void Draw();                        // desenho
+};
 
 // ------------------------------------------------------------------------------
 
 inline Vector& Missile::Speed()
-{ return speed; }
+{
+    return speed;
+}
 
 inline void Missile::Draw()
-{ sprite->Draw(x, y, Layer::UPPER, scale, rotation); }
+{
+    sprite->Draw(x, y, Layer::UPPER, scale, rotation);
+}
 
 // ------------------------------------------------------------------------------
 

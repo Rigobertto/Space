@@ -1,25 +1,36 @@
-
+/**********************************************************************************
+// Blue (Código Fonte)
+//
+// Criação:     10 Out 2012
+// Atualização: 11 Nov 2021
+// Compilador:  Visual C++ 2022
+//
+// Descrição:   Objeto faz uma perseguição suavizada
+//
+**********************************************************************************/
 
 #include "Space.h"
+#include "Start.h"
 #include "Blue.h"
 #include "Random.h" 
-#include "Start.h"
+#include "Hud.h"
+#include "Explosion.h"
 
 // ---------------------------------------------------------------------------------
 
-Blue::Blue(Player * p) : player(p)
+Blue::Blue(float pX, float pY, Player* p)
 {
-    sprite = new Sprite("Resources/Blue.png");
-    speed  = new Vector(0, 2.0f);
+    player = p;
+    sprite = new Sprite(Start::blue);
     BBox(new Circle(20.0f));
-    
-    // move para uma posição aleatória (canto superior direito)
-    RandF posX { game->Width() - 400, game->Width() - 300 };
-    RandF posY { 300, 400 };
-    MoveTo(posX.Rand(), posY.Rand());
-    
+    speed.RotateTo(0.0f);
+    speed.ScaleTo(0.0f);
+    MoveTo(pX, pY);
     factor = -0.25f;
     type = BLUE;
+
+    // incrementa contador
+    ++Hud::blues;
 }
 
 // ---------------------------------------------------------------------------------
@@ -27,15 +38,22 @@ Blue::Blue(Player * p) : player(p)
 Blue::~Blue()
 {
     delete sprite;
-    delete speed;
+
+    // decrementa contador
+    --Hud::blues;
 }
 
 // -------------------------------------------------------------------------------
 
-void Blue::OnCollision(Object * obj)
+void Blue::OnCollision(Object* obj)
 {
-      if (obj->Type() == MISSILE)
-          Start::scene->Delete(this, MOVING);
+    if (obj->Type() == MISSILE)
+    {
+        Start::scene->Delete(obj, STATIC);
+        Start::scene->Delete(this, MOVING);
+        Start::scene->Add(new Explosion(x, y), STATIC);
+        Space::audio->Play(EXPLODE);
+    }
 }
 
 // -------------------------------------------------------------------------------
@@ -44,20 +62,16 @@ void Blue::Update()
 {
     // a magnitude do vetor 'target' controla quão 
     // rápido o objeto converge para a direção do alvo
-    float angle = Line::Angle(Point(x, y), Point(player->X(), player->Y()));
-    float magnitude = 2.0f * gameTime;
-    Vector target = Vector(angle, magnitude);
+    Vector target{ Line::Angle(Point(x, y), Point(player->X(), player->Y())), 2.0f * gameTime };
+    speed.Add(target);
 
-    // ajusta velocidade atual na direção do alvo
-    speed->Add(target);
-    
     // limita a magnitude da velocidade para impedir 
     // que ela cresça indefinidamente pelo soma vetorial
-    if (speed->Magnitude() > 2.5f)
-        speed->ScaleTo(2.5f);
+    if (speed.Magnitude() > 4.5)
+        speed.ScaleTo(4.5f);
 
     // move o objeto pelo seu vetor velocidade
-    Translate(speed->XComponent() * 50.0f * gameTime, -speed->YComponent() * 50.0f * gameTime);
+    Translate(speed.XComponent() * 50.0f * gameTime, -speed.YComponent() * 50.0f * gameTime);
 
     // aplica fator de escala
     Scale(1.0f + factor * gameTime);

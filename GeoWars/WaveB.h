@@ -1,40 +1,38 @@
 /**********************************************************************************
-// Delay (Arquivo de Cabeçalho)
+// WaveB (Arquivo de Cabeçalho)
 //
-// Criação:     02 Ago 2019
+// Criação:     06 Ago 2019
 // Atualização: 11 Nov 2021
 // Compilador:  Visual C++ 2022
 //
-// Descrição:   Sincroniza uma ação
+// Descrição:   Cria uma onda de inimigos Blue
 //revisado
 **********************************************************************************/
 
-#ifndef _SPACE_DELAY_H_
-#define _SPACE_DELAY_H_
+#ifndef _SPACE_WAVEB_H_
+#define _SPACE_WAVEB_H_
 
 // --------------------------------------------------------------------------------
 
 #include "Object.h"
-#include "Sprite.h"
 #include "Timer.h"
+#include "Random.h"
 
 // --------------------------------------------------------------------------------
 
-class Delay : public Object
+class WaveB : public Object
 {
 private:
-    Sprite* logo;          // logotipo do jogo
+    float pX, pY;           // posição dos inimigos 
+    RandF posX;             // valor aleatório para posição X
+    RandF posY;             // valor aleatório para posição Y
+    RandF secs;             // valor aleatório de segundos
     Timer timer;            // medidor de tempo
-
-    bool notPlayed;         // intro não tocada ainda
-    bool fase1;             // fase 1 completada
-    bool fase2;             // fase 2 completada
-    bool fase3;             // fase 3 completada
-    bool fase4;             // fase 4 completada
+    float delay;            // atraso para a próxima onda
 
 public:
-    Delay();                // construtor
-    ~Delay();               // destrutor
+    WaveB();                // construtor
+    ~WaveB();               // destrutor
 
     void Update();          // atualização
     void Draw();            // desenho

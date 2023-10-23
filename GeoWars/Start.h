@@ -26,6 +26,11 @@ public:
     static bool viewHUD;            // visualização do painel
     static Player* player;         // nave controlada pela jogador
 
+    static Image* blue;            // imagem do inimigo azul
+    static Image* green;           // imagem do inimigo green
+    static Image* magenta;         // imagem do inimigo magenta
+    static Image* orange;          // imagem do inimigo orange
+
     void Init();                    // inicialização do nível
     void Update();                  // atualiza lógica do jogo
     void Draw();                    // desenha jogo

@@ -1,8 +1,8 @@
 /**********************************************************************************
 // Green (Código Fonte)
-// 
+//
 // Criação:     15 Out 2012
-// Atualização: 01 Nov 2021
+// Atualização: 11 Nov 2021
 // Compilador:  Visual C++ 2022
 //
 // Descrição:   Objeto faz uma fuga suavizada
@@ -10,28 +10,29 @@
 **********************************************************************************/
 
 #include "Green.h"
+#include "Start.h"
 #include "Space.h"
 #include "Random.h" 
-#include "Start.h"
+#include "Explosion.h"
 
 // ---------------------------------------------------------------------------------
 
-Green::Green(Player * p): player(p)
+Green::Green(float pX, float pY, Player* p)
 {
-    sprite = new Sprite("Resources/Green.png");
-    speed  = new Vector(0, 2.0f);
+    player = p;
+    sprite = new Sprite(Start::green);
     BBox(new Circle(20.0f));
+    speed.RotateTo(0.0f);
+    speed.ScaleTo(0.0f);
+    MoveTo(pX, pY);
+    type = GREEN;
 
     // mantém certa distância do jogador
-    RandI dist{ 300, 400 };
+    RandI dist{ 100, 400 };
     distance = dist.Rand();
 
-    // nasce em uma posição aleatória (canto inferior direito)
-    RandF posX{ game->Width() - 50, game->Width() };
-    RandF posY{ game->Height() - 50, game->Height() };
-    MoveTo(posX.Rand(), posY.Rand());
-
-    type = GREEN;
+    // incrementa contador
+    ++Hud::greens;
 }
 
 // ---------------------------------------------------------------------------------
@@ -39,45 +40,47 @@ Green::Green(Player * p): player(p)
 Green::~Green()
 {
     delete sprite;
-    delete speed;
+
+    // decrementa contador
+    --Hud::greens;
 }
 
 // -------------------------------------------------------------------------------
 
-void Green::OnCollision(Object * obj)
+void Green::OnCollision(Object* obj)
 {
     if (obj->Type() == MISSILE)
+    {
+        Start::scene->Delete(obj, STATIC);
         Start::scene->Delete(this, MOVING);
+        Start::scene->Add(new Explosion(x, y), STATIC);
+        Space::audio->Play(EXPLODE);
+    }
 }
 
 // -------------------------------------------------------------------------------
 
 void Green::Update()
 {
-    // a magnitude do vetor target controla quão 
-    // rápido o objeto converge para a direção do alvo
-    float angle = Line::Angle(Point(x, y), Point(player->X(), player->Y()));
-    float magnitude = 10.0f * gameTime;
-    Vector target = Vector(angle, magnitude);
-    
+    // a magnitude do vetor target controla quão rápido o objeto converge para a direção do alvo
+    Vector target = Vector(Line::Angle(Point(x, y), Point(player->X(), player->Y())), 20.0f * gameTime);
+
     // fugir se o player chegar muito perto
     if (Point::Distance(Point(x, y), Point(player->X(), player->Y())) < distance)
     {
         target.Rotate(180.0f);
-        target.ScaleTo(20.0f * gameTime);
+        target.ScaleTo(100.0f * gameTime);
     }
 
-    // ajusta velocidade atual na direção do alvo
-    speed->Add(target);
-    
+    speed.Add(target);
+
     // limita a magnitude da velocidade para impedir 
     // seu crescimento indefinido na soma vetorial
-    if (speed->Magnitude() > 3)
-        speed->ScaleTo(3.0f);
-
+    if (speed.Magnitude() > 8)
+        speed.ScaleTo(8.0f);
 
     // move o objeto pelo seu vetor velocidade
-    Translate(speed->XComponent() * 50.0f * gameTime, -speed->YComponent() * 50.0f * gameTime);
+    Translate(speed.XComponent() * 50.0f * gameTime, -speed.YComponent() * 50.0f * gameTime);
     Rotate(50 * gameTime);
 
     // mantém o objeto dentro do mundo do jogo

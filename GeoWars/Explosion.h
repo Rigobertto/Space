@@ -1,50 +1,49 @@
 /**********************************************************************************
-// WallHit (Arquivo de Cabeçalho)
+// Explosion (Arquivo de Cabeçalho)
 //
-// Criação:     03 Ago 2019
+// Criação:     17 Mar 2013
 // Atualização: 11 Nov 2021
 // Compilador:  Visual C++ 2022
 //
 // Descrição:   Efeito de explosão usando sistema de partículas
-//revisado
+//
 **********************************************************************************/
 
-#ifndef _SPACE_WALLHIT_H_
-#define _SPACE_WALLHIT_H_
+#ifndef _SPACE_EXPLOSION_H_
+#define _SPACE_EXPLOSION_H_
 
 // ---------------------------------------------------------------------------------
 
 #include "Object.h"    
 #include "Types.h"
 #include "Particles.h"
-#include "Missile.h"
 
 // ---------------------------------------------------------------------------------
 
-class WallHit : public Object
+class Explosion : public Object
 {
 private:
     Particles* sparks;                 // sistema de partículas
 
 public:
-    WallHit(float pX, float pY);        // construtor
-    ~WallHit();                         // destrutor
+    Explosion(float pX, float pY);      // construtor
+    ~Explosion();                       // destrutor
 
-    int  Size();                        // quantidade de partículas
+    int Size();                         // quantidade de partículas
     void Update();                      // atualização
     void Draw();                        // desenho
 };
 
 // ---------------------------------------------------------------------------------
 
-inline int WallHit::Size()
+inline int Explosion::Size()
 {
     return sparks->Size();
 }
 
-inline void WallHit::Draw()
+inline void Explosion::Draw()
 {
-    sparks->Draw(Layer::MIDDLE, 0.0f);
+    sparks->Draw(Layer::MIDDLE, 1.0f);
 }
 
 // ---------------------------------------------------------------------------------

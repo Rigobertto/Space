@@ -1,4 +1,13 @@
-
+/**********************************************************************************
+// Blue (Arquivo de Cabeçalho)
+//
+// Criação:     10 Out 2012
+// Atualização: 11 Nov 2021
+// Compilador:  Visual C++ 2022
+//
+// Descrição:   Objeto faz uma perseguição suavizada
+//revisado
+**********************************************************************************/
 
 #ifndef _SPACE_BLUE_H_
 #define _SPACE_BLUE_H_
@@ -16,24 +25,26 @@
 class Blue : public Object
 {
 private:
-    Sprite * sprite;                    // sprite do objeto
-    Vector * speed;                     // velocidade e direção
-    Player * player;                    // ponteiro para jogador
-    float factor;                       // fator de escala
-    
+    Sprite* sprite;                            // sprite do objeto
+    Player* player;                            // ponteiro para jogador
+    Vector speed;                               // velocidade e direção
+    float factor;                               // fator de escala
+
 public:
-    Blue(Player * p);                   // construtor
-    ~Blue();                            // destrutor
-    
-    void OnCollision(Object* obj);      // resolução da colisão
-    void Update();                      // atualização
-    void Draw();                        // desenho
-}; 
+    Blue(float pX, float pY, Player* p);       // construtor
+    ~Blue();                                    // destrutor
+
+    void OnCollision(Object* obj);              // resolução da colisão
+    void Update();                              // atualização
+    void Draw();                                // desenho
+};
 
 // ---------------------------------------------------------------------------------
 
 inline void Blue::Draw()
-{ sprite->Draw(x, y, Layer::LOWER, scale, rotation); }
+{
+    sprite->Draw(x, y, Layer::LOWER, scale, rotation);
+}
 
 // ---------------------------------------------------------------------------------
 

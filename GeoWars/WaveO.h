@@ -1,40 +1,40 @@
 /**********************************************************************************
-// Delay (Arquivo de Cabeçalho)
+// WaveO (Arquivo de Cabeçalho)
 //
-// Criação:     02 Ago 2019
+// Criação:     06 Ago 2019
 // Atualização: 11 Nov 2021
 // Compilador:  Visual C++ 2022
 //
-// Descrição:   Sincroniza uma ação
+// Descrição:   Cria uma onda de inimigos Orange
 //revisado
 **********************************************************************************/
 
-#ifndef _SPACE_DELAY_H_
-#define _SPACE_DELAY_H_
+#ifndef _SPACE_WAVEO_H_
+#define _SPACE_WAVEO_H_
 
 // --------------------------------------------------------------------------------
 
 #include "Object.h"
 #include "Sprite.h"
 #include "Timer.h"
+#include "Random.h"
 
 // --------------------------------------------------------------------------------
 
-class Delay : public Object
+class WaveO : public Object
 {
 private:
-    Sprite* logo;          // logotipo do jogo
+    int numX, numY;         // número de inimigos que cabem na tela
+    float posX, posY;       // posição dos inimigos 
+    RandI position;         // valor aleatório para posição
+    RandF delay;            // valor aleatório para tempo
     Timer timer;            // medidor de tempo
-
-    bool notPlayed;         // intro não tocada ainda
-    bool fase1;             // fase 1 completada
-    bool fase2;             // fase 2 completada
-    bool fase3;             // fase 3 completada
-    bool fase4;             // fase 4 completada
+    float waveDelay;        // atraso para a próxima onda
+    bool newWave;           // enviar nova onda
 
 public:
-    Delay();                // construtor
-    ~Delay();               // destrutor
+    WaveO();                // construtor
+    ~WaveO();               // destrutor
 
     void Update();          // atualização
     void Draw();            // desenho

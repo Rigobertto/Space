@@ -1,40 +1,35 @@
 /**********************************************************************************
-// Delay (Arquivo de Cabeçalho)
+// WaveG (Arquivo de Cabeçalho)
 //
-// Criação:     02 Ago 2019
+// Criação:     06 Ago 2019
 // Atualização: 11 Nov 2021
 // Compilador:  Visual C++ 2022
 //
-// Descrição:   Sincroniza uma ação
-//revisado
+// Descrição:   Cria uma onda de inimigos Green
+//Revisado
 **********************************************************************************/
 
-#ifndef _SPACE_DELAY_H_
-#define _SPACE_DELAY_H_
+#ifndef _SPACE_WAVEG_H_
+#define _SPACE_WAVEG_H_
 
 // --------------------------------------------------------------------------------
 
 #include "Object.h"
-#include "Sprite.h"
 #include "Timer.h"
+#include "Random.h"
 
 // --------------------------------------------------------------------------------
 
-class Delay : public Object
+class WaveG : public Object
 {
 private:
-    Sprite* logo;          // logotipo do jogo
+    RandF secs;             // valor aleatório de segundos
     Timer timer;            // medidor de tempo
-
-    bool notPlayed;         // intro não tocada ainda
-    bool fase1;             // fase 1 completada
-    bool fase2;             // fase 2 completada
-    bool fase3;             // fase 3 completada
-    bool fase4;             // fase 4 completada
+    float delay;            // atraso para a próxima onda
 
 public:
-    Delay();                // construtor
-    ~Delay();               // destrutor
+    WaveG();                // construtor
+    ~WaveG();               // destrutor
 
     void Update();          // atualização
     void Draw();            // desenho

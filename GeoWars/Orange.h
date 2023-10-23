@@ -1,4 +1,13 @@
-
+/**********************************************************************************
+// Orange (Arquivo de Cabeçalho)
+//
+// Criação:     05 Ago 2019
+// Atualização: 11 Nov 2021
+// Compilador:  Visual C++ 2022
+//
+// Descrição:   Objeto faz movimento retilíneo
+//revisado
+**********************************************************************************/
 
 #ifndef _SPACE_ORANGE_H_
 #define _SPACE_ORANGE_H_
@@ -16,20 +25,19 @@
 class Orange : public Object
 {
 private:
-    Sprite * sprite;                    // sprite do objeto
-    Vector * speed;                     // velocidade e direção
-    Player * player;                    // ponteiro para jogador
-    Particles * tail;                   // calda da nave laranja
-    float multiplier;                   // multiplicador da velocidade
-    
+    Sprite* sprite;                        // sprite da nave
+    Particles* tail;                       // calda da nave
+    uint tailCount;                         // quantidade de partículas da calda
+    Vector speed;                           // velocidade e direção    
+
 public:
-    Orange(Player * p);                 // construtor
-    ~Orange();                          // destrutor
-    
-    void OnCollision(Object* obj);      // resolução da colisão
-    void Update();                      // atualização
-    void Draw();                        // desenho
-}; 
+    Orange(float pX, float pY, float ang);  // construtor
+    ~Orange();                              // destrutor
+
+    void OnCollision(Object* obj);          // resolução da colisão
+    void Update();                          // atualização
+    void Draw();                            // desenho
+};
 
 // ---------------------------------------------------------------------------------
 

@@ -238,6 +238,7 @@
     <ClCompile Include="Controller.cpp" />
     <ClCompile Include="Delay.cpp" />
     <ClCompile Include="Engine.cpp" />
+    <ClCompile Include="Explosion.cpp" />
     <ClCompile Include="Font.cpp" />
     <ClCompile Include="Fundo.cpp" />
     <ClCompile Include="Game.cpp" />
@@ -268,6 +269,10 @@
     <ClCompile Include="Timer.cpp" />
     <ClCompile Include="Vector.cpp" />
     <ClCompile Include="WallHit.cpp" />
+    <ClCompile Include="WaveB.cpp" />
+    <ClCompile Include="WaveG.cpp" />
+    <ClCompile Include="WaveM.cpp" />
+    <ClCompile Include="WaveO.cpp" />
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -279,6 +284,7 @@
     <ClInclude Include="Controller.h" />
     <ClInclude Include="Delay.h" />
     <ClInclude Include="Engine.h" />
+    <ClInclude Include="Explosion.h" />
     <ClInclude Include="Font.h" />
     <ClInclude Include="Fundo.h" />
     <ClInclude Include="Game.h" />
@@ -311,6 +317,10 @@
     <ClInclude Include="Types.h" />
     <ClInclude Include="Vector.h" />
     <ClInclude Include="WallHit.h" />
+    <ClInclude Include="WaveB.h" />
+    <ClInclude Include="WaveG.h" />
+    <ClInclude Include="WaveM.h" />
+    <ClInclude Include="WaveO.h" />
     <ClInclude Include="Window.h" />
   </ItemGroup>
   <ItemGroup>

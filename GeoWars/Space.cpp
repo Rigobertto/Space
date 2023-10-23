@@ -28,16 +28,24 @@ void Space::Init()
     audio = new Audio();
     audio->Add(AUDIOMENU, "Resources/audios/Valley-of-Bowser.wav");
     audio->Add(THEME, "Resources/audios/stranger-things.wav");
-    audio->Add(FIRE, "Resources/Fire.wav");
-    audio->Add(HITWALL, "Resources/Hitwall.wav");
-    audio->Add(EXPLODE, "Resources/Explode.wav");
     audio->Add(START, "Resources/Start.wav");
+    audio->Add(FIRE, "Resources/Fire.wav", 2);
+    audio->Add(HITWALL, "Resources/Hitwall.wav", 5);
+    audio->Add(EXPLODE, "Resources/Explode.wav", 3);
+    audio->Add(ORANGE, "Resources/Orange.wav", 1);
+    audio->Add(MAGENTA, "Resources/Magenta.wav", 2);
+    audio->Add(BLUE, "Resources/Blue.wav", 2);
+    audio->Add(GREEN, "Resources/Green.wav", 2);
 
     // ajusta volumes
-    audio->Volume(FIRE, 0.2f);
-    audio->Volume(START, 0.8f);
-
-    Start::player  = new Player();
+    audio->Volume(START, 0.30f);
+    audio->Volume(THEME, 0.60f);
+    audio->Volume(FIRE, 0.10f);
+    audio->Volume(EXPLODE, 0.15f);
+    audio->Volume(ORANGE, 0.90f);
+    audio->Volume(MAGENTA, 0.40f);
+    audio->Volume(BLUE, 0.20f);
+    audio->Volume(GREEN, 0.75f);
 
 
     level = new GameOver();

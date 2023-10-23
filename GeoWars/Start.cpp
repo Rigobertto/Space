@@ -24,32 +24,36 @@ using namespace std;
 
 Scene * Start::scene = nullptr;
 bool   Start::viewHUD = false;
-
+Image* Start::blue = nullptr;
+Image* Start::green = nullptr;
+Image* Start::magenta = nullptr;
+Image* Start::orange = nullptr;
 // ------------------------------------------------------------------------------
 
 void Start::Init()
 {
 
     Start::Size(1920, 1200);
-    backg = new Background("Resources/background/Space.png");
-    // cria gerenciador de cena
-    scene = new Scene();
+    // carrega imagens das geometrias
+    blue = new Image("Resources/Blue.png");
+    green = new Image("Resources/Green.png");
+    magenta = new Image("Resources/Magenta.png");
+    orange = new Image("Resources/Orange.png");
 
-    // cria o painel de informações
+    // carrega/incializa objetos
+    backg = new Background("Resources/background/Space.png");
+    player = new Player();
+    scene = new Scene();
     hud = new Hud();
 
-    // adiciona objetos na cena (sem colisão)
-    scene->Add(player, STATIC);
-    scene->Add(new Magenta(player), STATIC);
-    scene->Add(new Blue(player), STATIC);
-    scene->Add(new Green(player), STATIC);
-    scene->Add(new Orange(player), STATIC);
+    // adiciona objetos na cena
+    scene->Add(player, MOVING);
     scene->Add(new Delay(), STATIC);
 
     // ----------------------
     // inicializa a viewport
     // ----------------------
-    
+
     // calcula posição para manter viewport centralizada
     float difx = (game->Width() - window->Width()) / 2.0f;
     float dify = (game->Height() - window->Height()) / 2.0f;
@@ -65,20 +69,17 @@ void Start::Init()
 
 void Start::Update()
 {
+    // sai com o pressionamento da tecla ESC
+    if (window->KeyDown(VK_ESCAPE))
+        window->Close();
+
+    // atualiza cena e calcula colisões
     scene->Update();
     scene->CollisionDetection();
 
-    // ativa ou desativa a bounding box
-    if (window->KeyPress('B'))
-        viewBBox = !viewBBox;
-
-    // ativa ou desativa o heads up display
-    if (window->KeyPress('H'))
-        viewHUD = !viewHUD;
-
-    // --------------------
+    // ---------------------------------------------------
     // atualiza a viewport
-    // --------------------
+    // ---------------------------------------------------
 
     viewport.left = player->X() - window->CenterX();
     viewport.right = player->X() + window->CenterX();
@@ -107,6 +108,19 @@ void Start::Update()
         viewport.bottom = game->Height();
     }
 
+    // ---------------------------------------------------
+
+    // atualiza o painel de informações
+    hud->Update();
+
+    // ativa ou desativa a bounding box
+    if (window->KeyPress('B'))
+        viewBBox = !viewBBox;
+
+    // ativa ou desativa o heads up display
+    if (window->KeyPress('H'))
+        viewHUD = !viewHUD;
+
 }
 
 // ------------------------------------------------------------------------------
@@ -119,7 +133,7 @@ void Start::Draw()
     // desenha a cena
     scene->Draw();
 
-    // desenha painel de informações
+    // desenha o painel de informações
     if (viewHUD)
         hud->Draw();
 
@@ -138,6 +152,11 @@ void Start::Finalize()
     delete hud;
     delete scene;
     delete backg;
+
+    delete blue;
+    delete green;
+    delete magenta;
+    delete orange;
 }
 
 // ------------------------------------------------------------------------------
