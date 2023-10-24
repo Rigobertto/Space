@@ -21,6 +21,7 @@
 #include "Controller.h"                 // entrada pelo controle
 #include "Timer.h"                      // controle do tempo
 
+
 // ---------------------------------------------------------------------------------
 
 class Player : public Object
@@ -43,6 +44,7 @@ private:
 public:
     static Image* missile;             // imagem do míssil
     Vector speed;                       // velocidade e direção de movimento
+    int score;
 
     Player();                           // construtor
     ~Player();                          // destrutor

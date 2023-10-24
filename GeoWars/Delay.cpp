@@ -22,7 +22,7 @@
 
 Delay::Delay()
 {
-    logo = new Sprite("Resources/Logo.png");
+    logo = new Sprite("Resources/botoes/Logo.png");
     timer.Start();
 
     notPlayed = true;

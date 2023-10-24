@@ -43,6 +43,7 @@ void Start::Init()
     // carrega/incializa objetos
     backg = new Background("Resources/background/Space.png");
     player = new Player();
+    player->MoveTo((game->CenterX()/2), (game->CenterY() / 2));
     scene = new Scene();
     hud = new Hud();
 
@@ -113,10 +114,6 @@ void Start::Update()
     // atualiza o painel de informações
     hud->Update();
 
-    // ativa ou desativa a bounding box
-    if (window->KeyPress('B'))
-        viewBBox = !viewBBox;
-
     // ativa ou desativa o heads up display
     if (window->KeyPress('H'))
         viewHUD = !viewHUD;
@@ -148,7 +145,7 @@ void Start::Finalize()
 {
     scene->Remove(player, MOVING);
 
-    delete player;
+    //delete player;
     delete hud;
     delete scene;
     delete backg;

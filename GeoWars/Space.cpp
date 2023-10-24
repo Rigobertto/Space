@@ -48,8 +48,8 @@ void Space::Init()
     audio->Volume(GREEN, 0.75f);
 
 
-    level = new GameOver();
-   // level->Size(1920, 1200);
+    level = new Home();
+    level->Size(1920, 1200);
     level->Init();
 }
 
@@ -113,7 +113,7 @@ int APIENTRY WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance,
     engine->window->Mode(WINDOWED);
     engine->window->Size(960, 640);
     engine->window->Color(0, 0, 0);
-    engine->window->Title("Space");
+    engine->window->Title("Space Hunter");
     engine->window->Icon(IDI_ICON);
     engine->window->Cursor(IDC_CURSOR);
     engine->window->HideCursor(true);
@@ -123,14 +123,14 @@ int APIENTRY WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance,
     Game * game = new Space();
 
     // configura o jogo
-    game->Size(1920, 1200);
+    //game->Size(1920, 1200);
     
     // inicia execução
-    engine->Start(game);
+    int status = engine->Start(game);
 
     // destrói motor e encerra jogo
     delete engine;
-    return 0;
+    return status;
 }
 
 // ----------------------------------------------------------------------------

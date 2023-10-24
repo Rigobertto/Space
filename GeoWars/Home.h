@@ -22,6 +22,7 @@ class Home : public Game
 private:
     static const int MaxItens = 3;
 
+    Sprite* logo = nullptr;
     Mouse* mouse = nullptr;         // objeto mouse
     Fundo* background = nullptr;
     Item* menu[MaxItens] = { 0, 0, 0};    // itens do menu

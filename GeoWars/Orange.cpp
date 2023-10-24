@@ -73,6 +73,7 @@ void Orange::OnCollision(Object* obj)
         Start::scene->Delete(obj, STATIC);
         Start::scene->Delete(this, MOVING);
         Start::scene->Add(new Explosion(x, y), STATIC);
+        Start::player->score += 1;
         Space::audio->Play(EXPLODE);
     }
 }

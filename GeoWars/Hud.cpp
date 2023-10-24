@@ -28,8 +28,9 @@ uint Hud::particles = 0;
 Hud::Hud()
 {
     // cria fonte para exibição de texto
-    font = new Font("Resources/Tahoma14.png");
-    font->Spacing("Resources/Tahoma14.dat");
+    font = new Font("Resources/font/SpaceAge32.png");
+    font->Spacing("Resources/font/SpaceAge32.dat");
+    font->Spacing(130);
     bold = new Font("Resources/Tahoma14b.png");
     bold->Spacing("Resources/Tahoma14b.dat");
 
@@ -80,26 +81,9 @@ void Hud::Draw()
     // define cor do texto
     Color textColor{ 0.7f, 0.7f, 0.7f, 1.0f };
 
-    // desenha texto
     text.str("");
-    text << "Geometry Wars";
-    bold->Draw(40, 62, text.str(), textColor);
-
-    text.str("");
-    text << "FPS: " << fps;
-    font->Draw(40, 92, text.str(), textColor);
-
-    text.str("");
-    text << "Partículas: " << particles;
-    font->Draw(40, 112, text.str(), textColor);
-
-    text.str("");
-    text << "Inimigos: " << oranges + magentas + blues + greens;
-    font->Draw(40, 132, text.str(), textColor);
-
-    text.str("");
-    text << "Mísseis: " << missiles;
-    font->Draw(40, 152, text.str(), textColor);
+    text << "SCORE: " << Start::player->score;
+    font->Draw(40, 100, text.str(), textColor, Layer::FRONT, 0.19);
 }
 
 // -------------------------------------------------------------------------------

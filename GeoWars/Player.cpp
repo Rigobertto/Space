@@ -24,6 +24,7 @@ Player::Player()
     // inicializa controle
     gamepad = new Controller();
     gamepadOn = gamepad->Initialize();
+    score = 0;
 
     // configuração do objeto
     sprite = new Sprite("Resources/player/player.png");

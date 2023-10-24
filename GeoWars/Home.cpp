@@ -16,10 +16,11 @@ void Home::Init()
 
     scene = new Scene();
 
-    string src = "Resources/background/start-screen.png";
+    string src = "Resources/background/teladefundo.png";
     background = new Fundo(50, Color{ 1,1,1,1 }, src);
     scene->Add(background, STATIC);
 
+    logo = new Sprite("Resources/botoes/logo.png");
 
     // cria objeto mouse
     mouse = new Mouse();
@@ -91,6 +92,7 @@ void Home::Update()
 void Home::Draw()
 {
 
+    logo->Draw(window->CenterX(), 150, Layer::FRONT);
 
     // desenha itens do menu
     scene->Draw();
