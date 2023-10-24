@@ -28,6 +28,7 @@ Image* Start::blue = nullptr;
 Image* Start::green = nullptr;
 Image* Start::magenta = nullptr;
 Image* Start::orange = nullptr;
+LifeBar* Start::lifeBar = nullptr;
 // ------------------------------------------------------------------------------
 
 void Start::Init()
@@ -46,9 +47,11 @@ void Start::Init()
     player->MoveTo((game->CenterX()/2), (game->CenterY() / 2));
     scene = new Scene();
     hud = new Hud();
+    lifeBar = new LifeBar();
 
     // adiciona objetos na cena
     scene->Add(player, MOVING);
+    scene->Add(lifeBar, MOVING);
     scene->Add(new Delay(), STATIC);
 
     // ----------------------

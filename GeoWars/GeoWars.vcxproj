@@ -246,6 +246,7 @@
     <ClCompile Include="Geometry.cpp" />
     <ClCompile Include="Home.cpp" />
     <ClCompile Include="Item.cpp" />
+    <ClCompile Include="LifeBar.cpp" />
     <ClCompile Include="Mouse.cpp" />
     <ClCompile Include="Space.cpp" />
     <ClCompile Include="Graphics.cpp" />
@@ -292,6 +293,7 @@
     <ClInclude Include="Geometry.h" />
     <ClInclude Include="Home.h" />
     <ClInclude Include="Item.h" />
+    <ClInclude Include="LifeBar.h" />
     <ClInclude Include="Mouse.h" />
     <ClInclude Include="Space.h" />
     <ClInclude Include="Graphics.h" />

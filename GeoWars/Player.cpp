@@ -290,6 +290,18 @@ void Player::Update()
 
 // ---------------------------------------------------------------------------------
 
+void Player::OnCollision(Object* obj)
+{
+    if (obj->Type() == ORANGE || obj->Type() == BLUE || obj->Type() == GREEN || obj->Type() == MAGENTA) {
+
+        Start::lifeBar->life -= 1;
+
+        if (Start::lifeBar->life == 0) {
+            Space::gameover = true;
+        }
+    }
+}
+
 void Player::Draw()
 {
     sprite->Draw(x, y, Layer::MIDDLE, 1.0f, -speed.Angle() + 90.0f);

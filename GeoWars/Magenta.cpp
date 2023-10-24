@@ -56,6 +56,12 @@ void Magenta::OnCollision(Object* obj)
         Start::player->score += 1;
         Space::audio->Play(EXPLODE);
     }
+
+    if (obj->Type() == PLAYER)
+    {
+        Start::scene->Delete(this, MOVING);
+        Start::player->score += 1;
+    }
 }
 
 // -------------------------------------------------------------------------------

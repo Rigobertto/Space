@@ -51,6 +51,7 @@ public:
 
     bool AxisTimed(int axisX, int axisY, float time);
     bool KeysTimed(bool pressed, float time);
+    void OnCollision(Object* obj);              // resolução da colisão
 
     void Move(Vector&& v);             // movimenta jogador
     void Update();                      // atualização

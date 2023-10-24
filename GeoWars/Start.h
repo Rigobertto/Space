@@ -11,6 +11,7 @@
 #include "Background.h"
 #include "Player.h"
 #include "Hud.h"
+#include "LifeBar.h"
 
 // ------------------------------------------------------------------------------
 
@@ -25,6 +26,7 @@ public:
     static Scene* scene;           // cena do jogo
     static bool viewHUD;            // visualização do painel
     static Player* player;         // nave controlada pela jogador
+    static LifeBar* lifeBar;
 
     static Image* blue;            // imagem do inimigo azul
     static Image* green;           // imagem do inimigo green
